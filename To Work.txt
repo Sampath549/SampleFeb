@@ -1,0 +1,18 @@
+Registration Server side toastr errors should go automaticaly after some time.
+While Login, getting the location based on Latitude and Longitude.
+Create a New MasterPage Template for Reset Password without the welcome image in comments.
+Place all Authorization Redirects to Unauthorization page. (Start with CSRF_AntiForgeryToken)
+Redirect to correct Error Page
+Loader for All Button click events.
+After Login - Master Page - A Dropdown is displayed when clicked on ProfilePic, need dispaly same when clicked on Name also.
+If Tab is closed then the session must also be closed.
+Check all the Password Patterns are same in Client and Server Sides
+
+
+ErrorLog [Menu] - Same Like Learningtext Grid
+Create All Users
+Display all Users
+Multi Login
+API Authorization
+CSRF Token
+
