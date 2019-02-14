@@ -1,0 +1,52 @@
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[USP_InsertUpdate_AssignedMenus]
+(
+	@Type				VARCHAR(15),
+	@AssignedMenuId		INT = NULL,
+	@ParentId			INT,
+	@RoleId				INT,
+	@OutPut			INT = 0 OUT
+)
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	IF(@Type = 'Insert')
+		BEGIN
+			INSERT INTO [eurodb].[tbl_AssignMenus] ([ParentId], [RoleId]) VALUES (@ParentId, @RoleId)
+			SET @OutPut = 1
+		END
+	ELSE IF(@Type = 'Update')
+		BEGIN
+			UPDATE [eurodb].[tbl_AssignMenus] SET [ParentId] = @ParentId, [RoleId] = @RoleId WHERE AssignMenuId= @AssignedMenuId
+			SET @OutPut = 1
+		END
+	ELSE 
+		SET @OutPut = 0
+END
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[USP_Delete_AssignedMenus]
+(
+	@AssignMenuId		INT,
+	@OutPut				INT = 0 OUT
+)
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	IF((SELECT COUNT(*) FROM [eurodb].[tbl_AssignMenus] WHERE AssignMenuId = @AssignMenuId) > 0)
+		BEGIN				
+			DELETE FROM [eurodb].[tbl_AssignMenus] WHERE AssignMenuId = @AssignMenuId
+			SET @OutPut = 1
+		END
+	ELSE
+		SET @OutPut = 99 -- Not Id
+END
